@@ -1,0 +1,28 @@
+public class Solution {
+    public int[] primesum(int A) {
+        boolean[] isPrime = new boolean[A+1];
+        int[] result = new int[2];
+        for(int i =0;i<A+1;i++){
+            isPrime[i] = true;
+        }
+        isPrime[0] = false;
+        isPrime[1] = false;
+        for(int p=2;p*p<A; p++){
+            if(isPrime[p]==true)
+                for(int j=p*p;j<A+1;j+=p){
+                    isPrime[j] = false;
+                }
+        }
+        
+        for(int i=0;i<A+1;i++){
+            if(isPrime[i] && isPrime[A-i]){
+                result[0] = i;
+                result[1] = A-i;
+                break;
+            }
+        }
+        return result;
+        
+        
+    }
+}
